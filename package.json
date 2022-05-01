@@ -1,0 +1,13 @@
+{
+  "name": "meet-ups",
+  "version": "1.0.0",
+  "description": "advance mvc express server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon --ignore feedback.json app.js"
+  },
+  "author": "Protege47007",
+  "license": "ISC"
+}
