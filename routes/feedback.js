@@ -1,10 +1,15 @@
 const express = require("express")
 const router = express.Router()
 
-module.exports = () => {
+module.exports = ({feedbackService}) => {
     
-    router.get("/", (req, res) => {
-        res.json({message: "this is the feedback 's index page"})
+    router.get("/", async (req, res, next) => {
+        try {
+            const feedbacks = await feedbackService.getList()
+            res.json({message: "this is the feedback 's index page", feedbacks})
+        } catch (error) {
+            return next(error)
+        }
     })
 
     router.post("/", (req, res) => {
