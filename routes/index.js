@@ -9,7 +9,8 @@ module.exports = (params) => {
     router.use("/", async (req, res, next) => {
         try {
             const topSpeakers = await speakerService.getList()
-            res.render("home", {topSpeakers}) 
+            const artworks = await speakerService.getAllArtwork()
+            res.render("home", {topSpeakers, artworks}) 
         } catch (error) {
             return next(error)
         }

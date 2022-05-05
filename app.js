@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const createError = require("http-errors")
 
 const FeedbackService = require("./services/feedbackService")
 const SpeakerService = require("./services/speakerService")
@@ -32,6 +33,17 @@ app.use(async (req, res, next) => {
 })
 app.use("/", routes({feedbackService, speakerService, }))
 
+app.use( (req, res, next) => {
+    return next(createError(404, "File Not Found"))
+})
+
+app.use( (err, req, res, next) => {
+    res.locals.message = err.message // global error message
+    const status = err.status || 500
+    res.locals.status = status // global error status
+    res.status(status)
+    res.send("error") // error page
+})
 
 app.listen(port, () => {
     console.log("server is running");

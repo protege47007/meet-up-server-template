@@ -1,12 +1,11 @@
 const fs =require("fs")
-const { get } = require("http")
-const { title } = require("process")
 const util = require("util")
 
 // to use async/await with fs.readFile, util.promisify gives us that
 const readFile = util.promisify(fs.readFile)
 // const writeFile = util.promisify(fs.writeFile)
 
+// 
 class Speaker{
     constructor(dataFile){
         this.dataFile = dataFile
